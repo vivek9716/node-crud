@@ -1,0 +1,22 @@
+extends layout
+
+block content	
+	.container
+		.starter-template
+			h1= title + " For Enquiry"			
+			p.lead
+				.col-xs-12.col-md-9.pull-md-3.bd-content
+					form(method="post",id="formId",controller-name="contact")
+						.form-group.row
+							.col-sm-4
+								label(for='name') Name*
+								input.required#name.form-control(type='text', aria-describedby='namehelp', placeholder='Enter name',name="name",data-message="Please enter a name.")
+						.form-group.row
+							.col-sm-4
+								label(for='exampleInputEmail1') Email*
+								input.required#exampleInputEmail1.form-control(type='email', aria-describedby='emailHelp', placeholder='Enter email',name="email",data-message="Please enter valid email address.")
+						.form-group.row
+							.col-sm-4
+								label(for='message') Message*
+								textarea.required#message.form-control(type='text', aria-describedby='messagehelp', placeholder='Enter Message',name="message",data-message="Please enter a message.")
+						button.btn.btn-primary(type='submit') Submit								

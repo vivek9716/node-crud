@@ -1,0 +1,20 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+.errors {
+	color: red;
+	padding-top: 5px;
+}
+.success {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	clear: both;
+	color: green;
+	padding: 8px 0 10px 14px;
+	text-align: center;
+}

@@ -1,0 +1,34 @@
+extends layout
+
+block content	
+	.container
+		.starter-template
+			h1= title
+			p.lead
+				.col-xs-12.col-md-9.pull-md-3.bd-content
+					form(method="post",id="registerFormId",controller-name="register")
+						.form-group.row
+							.col-sm-4
+								input.required#full_name.form-control(type='text', aria-describedby='namehelp', placeholder='Enter Full Name*',name="full_name",data-message="Please enter your full name.")
+						.form-group.row
+							.col-sm-4
+								input.required#user_name.form-control(type='text', aria-describedby='namehelp', placeholder='Enter User Name*',name="user_name",data-message="Please enter valid user name.")
+						.form-group.row
+							.col-sm-4
+								input.required.check_email#email.form-control(type='text', aria-describedby='emailHelp', placeholder='Enter email*',name="email",data-message="Please enter valid email address.")
+						.form-group.row
+							.col-sm-4
+								input.required#password.form-control(type='password', aria-describedby='passwordhelp', placeholder='Enter Password*',name="password",data-message="Please enter a password.")
+						.form-group.row
+							.col-sm-4
+								input.required.confirm_password#cpassword.form-control(type='password', aria-describedby='cpasswordhelp', placeholder='Enter Confirm Password*',name="cpassword",data-message="Confirm password not matched.")
+						.form-group.row
+							.col-sm-4
+								input.required.mobile_number#mobile_number.form-control(type='text', aria-describedby='mobileNumberhelp', placeholder='Enter Mobile Number*',name="mobile_number",data-message="Please enter a valid mobile number.")
+						.form-group.row
+							.col-sm-4
+								select.custom-select.required(name="gender",id="gender",data-message="Please select gender.")
+									option(selected='' value='') Select Gender*
+									option(value='Male') Male
+									option(value='Female') Female
+						button.btn.btn-primary(type='submit') Submit								
