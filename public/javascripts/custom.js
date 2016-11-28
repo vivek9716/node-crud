@@ -1,14 +1,18 @@
 $(document).ready(function(){
   $('form').submit(function() {
-    var formId = this.id;
+	var formId = this.id;
     $('.errors,.success').remove();
     var formErrors = VALIDATOR.check(this);
     if($.isEmptyObject(formErrors)) {
+	  $('#loading-indicator').show();
+	  $('#overlay').show();
       var serializedFormData = $(this).serialize();
       var saveControllerName = $(this).attr('controller-name');
       $.post(saveControllerName + '/send', serializedFormData, function(result) {
           //$('#'+formId).before('<span class="success">Your Information Saved Successfully.</span>');
       }).done(function(result) {
+		  $('#loading-indicator').hide();
+		  $('#overlay').hide();
           var result = $.parseJSON(result);
           if(result.status === 'success') {
             $('#'+formId).before('<div class="success">' + result.response_message + '</div>');

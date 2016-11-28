@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-var db = mongoose.createConnection('mongodb://127.0.0.1:27017/contact_user');
-
 var Schema = mongoose.Schema;
 
 // create a schema

@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var mongo = require('mongodb');
+//var mongo = require('mongodb');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -12,6 +12,8 @@ var about = require('./routes/about');
 var contact = require('./routes/contact');
 var register = require('./routes/register');
 
+var mongoose = require('mongoose');
+var db = mongoose.connect('mongodb://127.0.0.1:27017/contact_user');
 
 var app = express();
 
