@@ -19,7 +19,8 @@ router.post('/send', function(req, res, next) {
   	};
   	
   	var errMessage = checkServerValidation(postData);
-	if(errMessage == '{}') {		
+  	
+	if(JSON.stringify(errMessage) == '{}') {		
 		delete postData.cpassword;
 		var saveDetail = new RegisterModel(postData);
 		saveDetail.save(function(err) {
@@ -43,7 +44,7 @@ router.post('/send', function(req, res, next) {
 	} else {
 		responseData = JSON.stringify({
 			'status' : 'error', 
-			'response_code' : 302,
+			'response_code' : 303,
 			'response_message' : 'Not Working.',
 			'error': JSON.stringify(errMessage)
 		}); 
@@ -74,7 +75,7 @@ var checkServerValidation = function (postData) {
 		errMessage['cpassword'] = 'Confirm password not matched.';
 	}
 	
-	if (!validator.isMobilePhone(postData.mobile_number)) {
+	if (!validator.isMobilePhone(postData.mobile_number, 'en-IN')) {
 		errMessage['mobile_number'] = 'Please enter a valid mobile number.';
 	}
 	

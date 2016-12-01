@@ -21,18 +21,19 @@ registerSchema.pre('save', function(next) {
   var self = this;
   var jsonError = {};
   
-  Register.find({$or:[{user_name:self.user_name,email:self.email,mobile_number:self.mobile_number}]}, function (err, docs) {
+  Register.find({$or:[{user_name:self.user_name},{email:self.email},{mobile_number:self.mobile_number}]}, function (err, docs) {
+	  console.log(docs);
 	  if(err) {
 		  next(err);
 	  } else if (docs.length) {		  
 		  if (_.find(docs , {mobile_number: self.mobile_number})) {
-			jsonError['mobile_number'] = 'Mobile Number exist, use otherone.';			
+			jsonError['mobile_number'] = 'Mobile Number exist, use other.';			
 		  }
 		  if (_.find(docs , {email: self.email})){
 			jsonError['email'] = 'Email already register, please login.';			
 		  }
 		  if (_.find(docs , {user_name: self.user_name})){
-			jsonError['user_name'] = 'User Name already exist, use otherone.';			
+			jsonError['user_name'] = 'User Name already exist, choose other.';			
 		  }
 		  err = new Error(JSON.stringify(jsonError));
 		  next(err);        
