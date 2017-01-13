@@ -1,0 +1,16 @@
+extends layout
+
+block content	
+	.container
+		.starter-template
+			h1= title
+			p.lead
+				.col-xs-12.col-md-9.pull-md-3.bd-content
+					form(method="post",id="loginFormId",controller-name="login")
+						.form-group.row
+							.col-sm-4
+								input.required.check_email#email.form-control(type='text', aria-describedby='emailHelp', placeholder='Enter email*',name="email",data-message="Please enter valid email address.")
+						.form-group.row
+							.col-sm-4
+								input.required#password.form-control(type='password', aria-describedby='passwordhelp', placeholder='Enter Password*',name="password",data-message="Please enter a password.")
+						button.btn.btn-primary(type='submit') Submit								
