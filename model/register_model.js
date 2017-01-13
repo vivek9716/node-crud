@@ -22,7 +22,6 @@ registerSchema.pre('save', function(next) {
   var jsonError = {};
   
   Register.find({$or:[{user_name:self.user_name},{email:self.email},{mobile_number:self.mobile_number}]}, function (err, docs) {
-	  console.log(docs);
 	  if(err) {
 		  next(err);
 	  } else if (docs.length) {		  
@@ -49,8 +48,6 @@ registerSchema.pre('save', function(next) {
   if (!this.created_at)
     this.created_at = currentDate;  
 });
-
-
 
 // the schema is useless so far
 // we need to create a model using it

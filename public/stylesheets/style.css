@@ -18,5 +18,5 @@ a {
 	padding: 8px 0 10px 14px;
 	text-align: center;
 }
-#overlay{position:absolute;height:100%;width:100%;background:black;opacity:.7;z-index:2;display:none;left:0px;top:0px}
+#overlay{position:absolute;height:90%;width:90%;background:black;opacity:.7;z-index:2;display:none;left:0px;top:0px}
 #loading-indicator{position:absolute;top:40%;left:45%;z-index:3;display:none;}

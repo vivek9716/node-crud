@@ -11,7 +11,7 @@ var users = require('./routes/users');
 var about = require('./routes/about');
 var contact = require('./routes/contact');
 var register = require('./routes/register');
-//var login = require('./routes/login');
+var login = require('./routes/login');
 
 var mongoose = require('mongoose');
 var db = mongoose.connect('mongodb://127.0.0.1:27017/contact_user');
@@ -36,14 +36,14 @@ app.use('/users', users);
 app.use('/about', about);
 app.use('/contact', contact);
 app.use('/register', register);
-//app.use('/login', login);
+app.use('/login', login);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
-});
+});*/
 
 // error handler
 app.use(function(err, req, res, next) {
