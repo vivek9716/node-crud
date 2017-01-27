@@ -13,8 +13,17 @@ LOGIN.loginAuth = function(data, next) {
 	  if(err) {
 		 next(err);
 	  } else if (docs.length) {
-		 next(null, docs);		 
-      } else {
+		 if (bcrypt.compareSync(data.password, docs[0].password)) {
+			jsonError['status'] = 'success'; 
+			jsonError['user_info'] = docs[0]; 
+			next(null, JSON.stringify(jsonError));	
+		 } else {
+			 jsonError['email'] = 'Email/Password Not Matched.';
+			 err = new Error(JSON.stringify(jsonError));
+			 next(err);
+		 }
+		 
+      } else {		 
 		 jsonError['email'] = 'Email Not In DB!!';
 		 err = new Error(JSON.stringify(jsonError));
 		 next(err);

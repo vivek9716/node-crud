@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var loginModel = require('../model/login_model');
+
+var sess;
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('login', { title: 'Login' });
@@ -12,7 +15,11 @@ router.post('/send', function(req, res, next) {
 	  password:req.body.password	  
   	};
   	
+  	sess = req.session;
+  	
   	loginModel.loginAuth(postData, function (err, result) {
+		var responseData = '{}';
+		
 		if(err) {
 		 responseData = JSON.stringify({
 				'status' : 'error', 
@@ -21,20 +28,20 @@ router.post('/send', function(req, res, next) {
 				'error': err.message
 			});
 		} else {
-			responseData = JSON.stringify(result);			
+			result = JSON.parse(result);
+			if(result.status == 'success') {
+				
+				sess.user_info = result.user_info;
+				
+				responseData = JSON.stringify({
+					'status' : 'success', 
+					'response_code' : 303,
+					'response_message' : 'Login successfully.'
+				});
+			}
 		}
 		res.end(responseData);
-	});
-  	
-		
-	/*var authDetail = new LoginModel({
-	  email:req.body.email,
-	  password:req.body.password	  
-  	});
-  	
-  	authDetail.logon(function(err) {
-		res.end('Working');
-	});*/
+	});  		
 });
 
 router.post('/send1', function(req, res, next) {
